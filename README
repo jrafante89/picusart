@@ -1,0 +1,34 @@
+Este codigo foi desenvolvido como o objetivo de aprendizado na comunicação de serial entre o pic 18f4550 da placa de desenvolvimento
+PROTOn fabricada pela SmartRadio e o raspberry pi 2. Para este projeto foi utilizado o mplabx ide como compilador e o mphidflash para
+gravação do firmware no pic através da porta usb.
+
+Para este projeto foi utilizado: 
+
+-1 display LCD 16x4;
+-1 Placa de desenvolvimento PROTOn equipada com o pic18f4550 e bootloader de fábrica;
+-1 Raspberry pi 2;
+-1 Cooler;
+-Resistores;
+-1 mosfet irf540n;
+-1 fonte DC 5v 2A;
+-1 fonte DC 12 1A:
+-1 fotoacoplador;
+-Cabos de prototipação;
+
+Descritivo do projeto:
+
+O pic recebe uma mensagem do raspberry através da porta serial que deverá ter o valor de 0 a 100, indicando o valor do duty cycle do PWM
+que o pic deverá trabalhar. Após receber a mensagem ele deverá apresentar o valor em porcentagem na segunda linha o valor a ser aplicado 
+na função de pwm considerando ja a resolução do PWM que deverá ser de 0 a 1023, sendo 1023 100% do PWM. A porta 1 do PWM quando ativada 
+pulsará em um fotoacoplador (isolando o circuito de comando com o circuito de potência) acionando assim o gate do mosfet que ira pulsar na
+frequencia de 4khz e duty cycle setado na comunicação serial, variando assim a velocidade do cooler. 
+
+Com isto o operado poderar controlar a velocidade do cooler acessando apenas o terminal do raspberry.
+
+Comando em Python para configurar e enviar o comando via serial
+
+import serial
+porta="/dev/ttyAMA0"
+serialport = serial.Serial(porta,9600)
+serialport.open()
+serialport.write('1') // 
