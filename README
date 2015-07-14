@@ -31,4 +31,4 @@ import serial
 porta="/dev/ttyAMA0"
 serialport = serial.Serial(porta,9600)
 serialport.open()
-serialport.write('1') // 
+serialport.write('1') // comando para enviar a mensagem o valor pode ser 0 a 100
